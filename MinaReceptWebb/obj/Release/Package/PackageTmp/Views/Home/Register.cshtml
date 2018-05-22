@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+@if (ViewBag.Password != null)
+{
+    <div class="alert alert-danger">@ViewBag.Password</div>
+}
+
+<form method="post" action="~/Home/DoRegister">
+    <div class="form-group">
+        <label for="mail">Mailadress</label>
+        @if (ViewBag.Mail != null)
+        {
+            <input type="email" name="mail" class="form-control" id="mail" value="@ViewBag.Mail" />
+        }
+        else
+        {
+            <input type="email" name="mail" class="form-control" id="mail" />
+        }
+        
+    </div>
+    <div class="form-group">
+        <label for="pwd1">Lösenord</label>
+        <input type="password" name="pwd1" class="form-control" id="pwd1"/>
+    </div>
+    <div class="form-group">
+        <label for="pwd2">Repetera lösenord</label>
+        <input type="password" name="pwd2" class="form-control" id="pwd2"/>
+    </div>
+    <button type="submit" class="btn btn-default">Registrera</button>
+</form>

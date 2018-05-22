@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<form method="get" action="~/Recipe/Add">
+    <div class="form-group">
+        <label for="name">Namn</label>
+        <input type="text" class="form-control" id="name" name="name"/>
+    </div>
+    <div class="form-group">
+        <label for="link">Länk</label>
+        <input type="text" class="form-control" id="link" name="link"/>
+    </div>
+    <button type="submit" class="btn btn-default">Lägg till</button>
+</form>

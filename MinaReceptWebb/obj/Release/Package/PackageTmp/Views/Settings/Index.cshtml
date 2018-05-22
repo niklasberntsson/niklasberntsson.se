@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inställningar</h2>
+
+<form method="post" action="~/Settings/Change">
+    <div class="form-group">
+        <label for="days">Startdag</label>
+        <select class="form-control" name="days" id="days">
+            @foreach (var day in ViewBag.Days)
+            {
+                if (day == ViewBag.FirstDay)
+                {
+                    <option selected="selected" id="@day">@day</option>
+                }
+                else
+                {
+                    <option id="@day">@day</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="weekCount">Antal dagar i veckoplanen</label>
+        <select class="form-control" name="weekCount" id="weekCount">
+            @for (var i = 1; i <= 28; i++)
+            {
+                if (i == ViewBag.DaysCount)
+                {
+                    <option id="@("days_" + i)" selected="selected">@i</option>
+                }
+                else
+                {
+                    if (i == 7)
+                    {
+                        <option id="@("days_" + i)" selected="selected">@i</option>
+                    }
+                    else
+                    {
+                        <option id="@("days_" + i)">@i</option>
+                    }
+                }
+
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Spara</button>
+</form>
+
+

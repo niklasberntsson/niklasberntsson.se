@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Veckoplan</h2>
+
+<input type="hidden" name="weekPlanId" id="weekPlanId" value="@ViewBag.WeekPlan.Id"/>
+
+<button type="button" class="btn-success" id="btnCreateNewWeekPlan">Skapa ny veckoplan</button>
+<form id="newWeekPlan">
+    <div class="form-group">
+        <label for="name">Namn:</label>
+        <input type="text" class="form-control" id="name">
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="active" id="active"> Markera som aktiv</label>
+    </div>
+    <button type="button" class="btn btn-default" id="btnSubmitNewWeekPlan">Spara</button>
+</form>
+
+@*<div class="row">
+    <h4>Mina sparade recept</h4>
+    @foreach (var item in ViewBag.WeekPlan.WeekItems)
+    {
+        <div class="col-md-8">@item.Recipe.Name</div>
+    }
+</div>*@
+
+<div class="row">
+    <h4>Veckoplanering</h4>
+    @for (var i = 0; i < ViewBag.WeekDays.Length; i++)
+    {
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.WeekDays[i]</div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Lunch</div>
+                <div class="panel-body">
+                    <select class="form-control">
+                        @foreach (var item in ViewBag.WeekPlan.WeekItems)
+                        {
+                            <option>@item.Recipe.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Middag</div>
+                <div class="panel-body">
+                    <select class="form-control">
+                        @foreach (var item in ViewBag.WeekPlan.WeekItems)
+                        {
+                            <option>@item.Recipe.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    }
+</div>

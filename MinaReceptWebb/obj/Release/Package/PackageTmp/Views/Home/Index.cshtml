@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (ViewBag.Count != null) { 
+    <h2>Alla Recept (@ViewBag.Count st)</h2>
+}
+else
+{
+    <h2>Alla Recept</h2>
+}
+
+<div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <input id="search" type="text" class="form-control" name="search" placeholder="Sök">
+</div>
+
+<div>
+    <label for="meal">Måltidstyp</label>
+    <select class="form-control" id="mealIndex" name="meal">
+        @foreach (var meal in ViewBag.Meals)
+        {
+            <option value="@meal.Id">@meal.Name</option>
+        }
+    </select>
+</div>
+
+<br />
+
+<ul class="list-group" id="recipiesList">
+    @foreach (var recipe in ViewBag.Recipies)
+    {
+        <li class="list-group-item recipe dropdown-toggle" data-toggle="dropdown" id="@("recipe_" + recipe.Id)">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">@recipe.Name</a>
+            <ul class="dropdown-menu">
+                <li><a href="@recipe.Link" onclick="followLink(this)" target="_blank">Följ länk</a></li>
+                <li class="divider"></li>
+                <li><a href="no-javascript.html" class="addToWeekPlan" id="@("weekplan_" + recipe.Id)">Lägg till i veckomatsedeln</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Ändra recept</a></li>
+                <li><a href="#">Markera som död länk</a></li>
+                <li><a href="#">Dela</a></li>
+
+            </ul> 
+        </li>
+    }
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalWeekPlanHeader"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalReceptName">Receptet är sparat i din veckomatsedel.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
